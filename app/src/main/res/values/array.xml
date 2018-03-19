@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="title">
+        <item>折线图</item>
+        <item>柱状图</item>
+    </array>
+</resources>
