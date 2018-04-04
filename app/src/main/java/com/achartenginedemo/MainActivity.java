@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.achartenginedemo.View.FoldLineDiagramActivity;
+
 public class MainActivity extends AppCompatActivity {
     private Context context = MainActivity.this;
     private ListView listView;

@@ -1,4 +1,4 @@
-package com.achartenginedemo;
+package com.achartenginedemo.View;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.achartenginedemo.R;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -25,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Date：2018/4/4
  * Function: 折线图
  */
 
@@ -69,10 +72,7 @@ public class FoldLineDiagramActivity extends AppCompatActivity {
         for (int i = 0; i < length; i++) {
             ((XYSeriesRenderer) renderer.getSeriesRendererAt(i)).setFillPoints(true);//设置每个点都是实心
         }
-
-        setChartSettings(renderer, "", "X", "Y", Color.BLACK);
-
-        //----------------------
+        setChartSettings(renderer, "顶部标题", "X轴", "Y轴", Color.BLACK);
         XYMultipleSeriesDataset dataset = buiildDataset(title, xValue, yValue);
 
         lineChartView = ChartFactory.getLineChartView(context, dataset, renderer);
@@ -192,17 +192,6 @@ public class FoldLineDiagramActivity extends AppCompatActivity {
         XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
         setRenderer(renderer, colors, styles);
         return renderer;
-    }
-
-    /**
-     * 设置滑动限制
-     *
-     * @param yValueMin
-     * @param yValueMax
-     */
-    private void setLineChartPanAndZoomLimits(XYMultipleSeriesRenderer renderer, double yValueMin, double yValueMax, double lastMaxLimitX) {
-        renderer.setPanLimits(new double[]{-0.5, lastMaxLimitX, yValueMin, yValueMax});// 设置滑动范围，前面两个参数是x轴范围，后面是y轴范围
-        renderer.setZoomLimits(new double[]{-0.5, lastMaxLimitX, yValueMin, yValueMax});// 设置缩放限制
     }
 
     /**
