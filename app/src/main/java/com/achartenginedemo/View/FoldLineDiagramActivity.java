@@ -218,14 +218,10 @@ public class FoldLineDiagramActivity extends AppCompatActivity {
 
                 double[] xV = xValues.get(i);
                 double[] yV = yValues.get(i);
-//                for (int j = 0; j < yV.length; j++) {
-//                    yV[j] = Double.parseDouble(decimalFormat.format(yV[j]));//转成格式
-//                }
                 int seriesLength = xV.length;
 
                 for (int k = 0; k < seriesLength; k++) {
                     if (k < yV.length) {
-                        Log.d(TAG, "Index " + k + " x " + xV[k] + " y " + yV[k]);
                         series.add(k, xV[k], yV[k]);//系列
                     }
                 }
