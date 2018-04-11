@@ -54,16 +54,20 @@ public class DiagramActivity extends BaseActivity {
     private void initView() {
         contentLayout = findViewById(R.id.contentLayout);
 
+        //根据标题数量设置颜色数量
         colors = new int[]{Color.BLUE, Color.RED};
 
+        //曲线样式 根据PointStyle类:5个样式选择
         PointStyle[] styles = new PointStyle[]{PointStyle.CIRCLE, PointStyle.DIAMOND, PointStyle.TRIANGLE, PointStyle.SQUARE, PointStyle.CIRCLE};
         XYMultipleSeriesRenderer renderer = builder(colors, styles);
 
+        //设置每个点都是实心
         int length = renderer.getSeriesRendererCount();
         for (int i = 0; i < length; i++) {
-            ((XYSeriesRenderer) renderer.getSeriesRendererAt(i)).setFillPoints(true);//设置每个点都是实心
+            ((XYSeriesRenderer) renderer.getSeriesRendererAt(i)).setFillPoints(true);
         }
 
+        //设置标题,处理数据
         setChartSettings(renderer, "顶部标题", "X轴", "Y轴", Color.BLACK);
         XYMultipleSeriesDataset dataset = buiildDataset(title, xValue, yValue);
 
