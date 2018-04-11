@@ -79,6 +79,7 @@ public class DiagramActivity extends BaseActivity {
                 lineChartView = ChartFactory.getScatterChartView(context, dataset, renderer);
                 break;
             case 3:
+                //报错：at org.achartengine.GraphicalView.onDraw(GraphicalView.java:168)
                 lineChartView = ChartFactory.getBubbleChartView(context, dataset, renderer);
                 break;
             case 4:
@@ -92,8 +93,8 @@ public class DiagramActivity extends BaseActivity {
                 lineChartView = ChartFactory.getRangeBarChartView(context, dataset, renderer, BarChart.Type.DEFAULT);
                 break;
             case 7:
-                /* 组合图 每条曲线标明曲线类型*/
-                String[] strings = {LineChart.TYPE, BarChart.TYPE};
+                /* 组合图 每条曲线标明曲线类型 (优先实现柱状图,否则柱状图文字被遮挡)*/
+                String[] strings = {BarChart.TYPE, LineChart.TYPE};
                 lineChartView = ChartFactory.getCombinedXYChartView(context, dataset, renderer, strings);
                 break;
         }
