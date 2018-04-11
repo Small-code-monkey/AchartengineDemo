@@ -9,20 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.achartenginedemo.Base.BaseActivity;
-import com.achartenginedemo.View.FoldLineDiagramActivity;
+import com.achartenginedemo.View.DiagramActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 首页
+ */
 public class MainActivity extends BaseActivity {
     private Context context = MainActivity.this;
     private ListView listView;
     private String[] titles;
 
     private List<String> title = new ArrayList<>();//名称
-    private List<double[]> xValue = new ArrayList<>();// x轴值
+    private List<double[]> xValue = new ArrayList<>();//x轴值
     private List<double[]> yValue = new ArrayList<>();//y轴值
 
     @Override
@@ -31,6 +34,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         titles = getResources().getStringArray(R.array.title);
 
+        //负责标题,根据标题数量形成曲线数量
         title = Arrays.asList("1", "2");
 
         //X轴负责线段长度
@@ -50,13 +54,7 @@ public class MainActivity extends BaseActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        IntentActivity(FoldLineDiagramActivity.class);
-                        break;
-                    case 1:
-                        break;
-                }
+                IntentActivity(DiagramActivity.class, i);
             }
         });
     }
@@ -66,8 +64,9 @@ public class MainActivity extends BaseActivity {
      *
      * @param activity
      */
-    private void IntentActivity(Class<?> activity) {
+    private void IntentActivity(Class<?> activity, int i) {
         Intent intent = new Intent(context, activity);
+        intent.putExtra("i", i);
         Bundle bundle = new Bundle();
         bundle.putSerializable("title", (Serializable) title);
         bundle.putSerializable("xValue", (Serializable) xValue);

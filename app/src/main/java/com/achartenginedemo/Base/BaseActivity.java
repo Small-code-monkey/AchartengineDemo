@@ -6,7 +6,9 @@ import android.graphics.Paint;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.achartenginedemo.R;
 
@@ -28,6 +30,14 @@ public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     private Context context = BaseActivity.this;
 
+    public void toast(String text) {
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
+    public void toast(int resId) {
+        Toast.makeText(context, context.getString(resId), Toast.LENGTH_LONG).show();
+    }
+
     /**
      * 坐标点的点击事件
      */
@@ -39,6 +49,16 @@ public class BaseActivity extends AppCompatActivity {
             if (seriesAndPoint == null) {
                 return;
             }
+        }
+    };
+
+    /**
+     * 坐标点的触摸事件
+     */
+    protected View.OnTouchListener lineChartViewTouch = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return false;
         }
     };
 
